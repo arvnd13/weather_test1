@@ -1,0 +1,31 @@
+<svg width="1440" height="1024" viewBox="0 0 1440 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="1440" height="1024" fill="url(#backgroundPattern)"/>
+	
+    <!-- City Name -->
+    <text x="50%" y="20%" font-size="48" fill="#333" text-anchor="middle" id="city_name">{{city}}</text>
+
+    <!-- Temperature -->
+    <text x="50%" y="40%" font-size="64" fill="#333" text-anchor="middle" id="temperature">{{temperature}}°C</text>
+
+    <!-- Weather Description -->
+    <text x="50%" y="60%" font-size="32" fill="#555" text-anchor="middle" id="description">{{description}}</text>
+
+    <!-- Additional Design Elements (optional) -->
+    <circle cx="50%" cy="80%" r="50" fill="url(#sunGradient)" />
+    <!-- More design elements can be added here -->
+
+    <!-- Definitions for Gradients or Patterns -->
+    <defs>
+        <linearGradient id="backgroundPattern" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#a1c4fd"/>
+            <stop offset="100%" stop-color="#c2e9fb"/>
+        </linearGradient>
+        <radialGradient id="sunGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+            <stop offset="0%" stop-color="#FFD700" />
+            <stop offset="100%" stop-color="#FFA500" />
+        </radialGradient>
+    </defs>
+	
+
+</svg>
