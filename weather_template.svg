@@ -1,31 +1,110 @@
-<svg width="1440" height="1024" viewBox="0 0 1440 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- Background -->
-    <rect width="1440" height="1024" fill="url(#backgroundPattern)"/>
-	
-    <!-- City Name -->
-    <text x="50%" y="20%" font-size="48" fill="#333" text-anchor="middle" id="city_name">{{city}}</text>
+<svg width="400" height="600" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Definitions for Reusable Components and Styles -->
+    <defs>
+        <!-- Backgrounds -->
+        <linearGradient id="sunnyBg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FDB813"/>
+            <stop offset="100%" stop-color="#FCE38A"/>
+        </linearGradient>
+
+        <linearGradient id="cloudyBg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#D7DDE8"/>
+            <stop offset="100%" stop-color="#757F9A"/>
+        </linearGradient>
+
+        <!-- Weather Icons -->
+        <symbol id="sunIcon" viewBox="0 0 64 64">
+            <!-- Sun Icon Path -->
+            <circle cx="32" cy="32" r="12" fill="#FDB813"/>
+            <!-- Rays -->
+            <g stroke="#FDB813" stroke-width="4">
+                <line x1="32" y1="4" x2="32" y2="16"/>
+                <line x1="32" y1="48" x2="32" y2="60"/>
+                <line x1="4" y1="32" x2="16" y2="32"/>
+                <line x1="48" y1="32" x2="60" y2="32"/>
+                <line x1="12" y1="12" x2="20" y2="20"/>
+                <line x1="44" y1="44" x2="52" y2="52"/>
+                <line x1="12" y1="52" x2="20" y2="44"/>
+                <line x1="44" y1="20" x2="52" y2="12"/>
+            </g>
+        </symbol>
+
+        <symbol id="cloudIcon" viewBox="0 0 64 64">
+            <!-- Cloud Icon Path -->
+            <path d="M50.4,32.2c0-8.8-7.2-16-16-16c-5.5,0-10.4,2.8-13.2,7c-1.1-0.4-2.4-0.6-3.6-0.6c-5.5,0-10,4.5-10,10
+                s4.5,10,10,10h29c6.6,0,12-5.4,12-12C62,37.6,56.6,32.2,50.4,32.2z" fill="#757F9A"/>
+        </symbol>
+
+        <!-- Styles -->
+        <style>
+            .main-text {
+                font-family: 'Arial, sans-serif';
+                fill: #ffffff;
+                text-anchor: middle;
+            }
+            .sub-text {
+                font-family: 'Arial, sans-serif';
+                fill: #f0f0f0;
+                text-anchor: middle;
+            }
+            .detail-text {
+                font-family: 'Arial, sans-serif';
+                fill: #ffffff;
+                text-anchor: start;
+            }
+        </style>
+    </defs>
+
+    <!-- Dynamic Background -->
+    <rect width="100%" height="100%" fill="url(#{{background_gradient}})" />
+
+    <!-- Current Weather Icon -->
+    <use href="#{{weather_icon}}" x="50%" y="25%" width="100" height="100" transform="translate(-50, -50)" />
 
     <!-- Temperature -->
-    <text x="50%" y="40%" font-size="64" fill="#333" text-anchor="middle" id="temperature">{{temperature}}°C</text>
+    <text x="50%" y="50%" font-size="64" class="main-text">
+        {{temperature}}°C
+    </text>
 
     <!-- Weather Description -->
-    <text x="50%" y="60%" font-size="32" fill="#555" text-anchor="middle" id="description">{{description}}</text>
+    <text x="50%" y="58%" font-size="24" class="sub-text">
+        {{weather_description}}
+    </text>
 
-    <!-- Additional Design Elements (optional) -->
-    <circle cx="50%" cy="80%" r="50" fill="url(#sunGradient)" />
-    <!-- More design elements can be added here -->
+    <!-- Additional Details -->
+    <g transform="translate(50, 380)">
+        <text x="0" y="0" font-size="18" class="detail-text">Humidity: {{humidity}}%</text>
+        <text x="0" y="30" font-size="18" class="detail-text">Wind: {{wind_speed}} km/h</text>
+        <text x="0" y="60" font-size="18" class="detail-text">Pressure: {{pressure}} hPa</text>
+    </g>
 
-    <!-- Definitions for Gradients or Patterns -->
-    <defs>
-        <linearGradient id="backgroundPattern" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#a1c4fd"/>
-            <stop offset="100%" stop-color="#c2e9fb"/>
-        </linearGradient>
-        <radialGradient id="sunGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-            <stop offset="0%" stop-color="#FFD700" />
-            <stop offset="100%" stop-color="#FFA500" />
-        </radialGradient>
-    </defs>
-	
+    <!-- Forecast for Next Days -->
+    <g transform="translate(0, 480)">
+        <!-- Day 1 -->
+        <g transform="translate(20, 0)">
+            <text x="40" y="0" font-size="18" class="detail-text">{{day1_name}}</text>
+            <use href="#{{day1_icon}}" x="20" y="10" width="40" height="40" />
+            <text x="40" y="70" font-size="18" class="detail-text">{{day1_temp}}°C</text>
+        </g>
+        <!-- Day 2 -->
+        <g transform="translate(120, 0)">
+            <text x="40" y="0" font-size="18" class="detail-text">{{day2_name}}</text>
+            <use href="#{{day2_icon}}" x="20" y="10" width="40" height="40" />
+            <text x="40" y="70" font-size="18" class="detail-text">{{day2_temp}}°C</text>
+        </g>
+        <!-- Day 3 -->
+        <g transform="translate(220, 0)">
+            <text x="40" y="0" font-size="18" class="detail-text">{{day3_name}}</text>
+            <use href="#{{day3_icon}}" x="20" y="10" width="40" height="40" />
+            <text x="40" y="70" font-size="18" class="detail-text">{{day3_temp}}°C</text>
+        </g>
+        <!-- Day 4 -->
+        <g transform="translate(320, 0)">
+            <text x="40" y="0" font-size="18" class="detail-text">{{day4_name}}</text>
+            <use href="#{{day4_icon}}" x="20" y="10" width="40" height="40" />
+            <text x="40" y="70" font-size="18" class="detail-text">{{day4_temp}}°C</text>
+        </g>
+    </g>
 
 </svg>
